@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор</title>
+    <style>
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 250px;
+            margin: auto;
+        }
+        .button {
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+        #inputField {
+            grid-column: span 4;
+            text-align: right;
+            padding: 10px;
+            font-size: 24px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="inputField">0</div>
+    <div class="calculator">
+        <div class="button" onclick="addToScreen('7')">7</div>
+        <div class="button" onclick="addToScreen('8')">8</div>
+        <div class="button" onclick="addToScreen('9')">9</div>
+        <div class="button" onclick="addToScreen('/')">/</div>
+        <div class="button" onclick="addToScreen('4')">4</div>
+        <div class="button" onclick="addToScreen('5')">5</div>
+        <div class="button" onclick="addToScreen('6')">6</div>
+        <div class="button" onclick="addToScreen('*')">*</div>
+        <div class="button" onclick="addToScreen('1')">1</div>
+        <div class="button" onclick="addToScreen('2')">2</div>
+        <div class="button" onclick="addToScreen('3')">3</div>
+        <div class="button" onclick="addToScreen('-')">-</div>
+        <div class="button" onclick="addToScreen('0')">0</div>
+        <div class="button" onclick="addToScreen('.')">.</div>
+        <div class="button" onclick="calculate()">=</div>
+        <div class="button" onclick="addToScreen('+')">+</div>
+    </div>
+
+    <script>
+        let inputField = document.getElementById('inputField');
+        let input = '';
+
+        function addToScreen(value) {
+            if (input === '0' && value !== '.') {
+                input = value;
+            } else {
+                input += value;
+            }
+            inputField.innerText = input;
+        }
+
+        function calculate() {
+            try {
+                let result = eval(input);
+                inputField.innerText = result;
+                input = '';
+            } catch (error) {
+                inputField.innerText = 'Error';
+                input = '';
+            }
+        }
+    </script>
+</body>
+</html>
